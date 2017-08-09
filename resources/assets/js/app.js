@@ -2,15 +2,13 @@
 /* eslint no-unused-vars: */
 
 import './bootstrap'
-// import App from './components/App'
+import store from './store'
 import router from './routes'
 
 const app = new Vue({
     el: '#app',
 
-    // template: '<App/>',
-
-    // components: { App }
+    store,
 
     router
 })

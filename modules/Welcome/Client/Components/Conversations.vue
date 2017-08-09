@@ -24,48 +24,26 @@
 </template>
 
 <script>
-import Conversation from '~/modules/Conversation/Client/Models/Conversation'
+import Conversation from '~/modules/Conversation/Client/Resources/Conversation'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
     name: 'conversations',
-
-    data() {
-        return {
-            conversations: []
-        }
-    },
-
+    computed: mapGetters({
+        conversations: 'conversations'
+    }),
     methods: {
         viewConversation(conversation) {
-            console.log(conversation);
+            this.$router.push({
+                name: 'conversation.show',
+                params: {
+                    id: conversation.id
+                }
+            })
         }
     },
-
     created() {
-        Conversation.all(conversations => this.conversations = conversations)
+        this.$store.dispatch('getAllConversations')
     }
 }
 </script>
-
-<style lang="scss" scoped>
-$box-highlight: #B6C0E2;
-$online-image: #3C4F8F;
-
-.box:not(:last-child) {
-    margin-bottom: 0;
-}
-.box:hover {
-    background: $box-highlight;
-    cursor: pointer;
-}
-.box {
-    border-radius: 5px;
-    padding: 0.75rem;
-    margin: 0.75rem;
-}
-.image {
-    border-radius: 50%;
-    border: 2px solid $online-image;
-    overflow: hidden;
-}
-</style>

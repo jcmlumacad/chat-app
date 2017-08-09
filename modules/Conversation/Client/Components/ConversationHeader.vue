@@ -24,24 +24,6 @@ import Back from '~/modules/Conversation/Client/Components/Back'
 
 export default {
     name: 'conversation-header',
-
     components: { Back }
 }
 </script>
-
-<style lang="scss" scoped>
-$header: #253878;
-
-.conversation-header {
-    height: 100%;
-}
-.is-info {
-    background-color: $header;
-    box-shadow: 0 1px 4px rgba(0,0,0,.2);
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-}
-</style>

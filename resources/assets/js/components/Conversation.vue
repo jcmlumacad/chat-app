@@ -13,7 +13,6 @@ import ConversationResponse from '~/modules/Conversation/Client/Components/Conve
 
 export default {
     name: 'conversation',
-
     components: {
         ConversationHeader,
         ConversationTimeline,
@@ -21,9 +20,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-.conversation {
-    height: 3.25rem;
-}
-</style>

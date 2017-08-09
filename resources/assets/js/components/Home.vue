@@ -39,16 +39,13 @@ import CreateConversation from '~/modules/Welcome/Client/Components/CreateConver
 
 export default {
     name: 'home',
-
     data() {
         return { active: false }
     },
-
     components: {
         Conversations,
         CreateConversation
     },
-
     methods: {
         toggle() {
             this.active = !this.active
@@ -56,23 +53,3 @@ export default {
     }
 }
 </script>
-
-<style lang="scss" scoped>
-$header: #253878;
-
-.is-info {
-  background-color: $header;
-  box-shadow: 0 1px 4px rgba(0,0,0,.2);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-}
-.conversation-section {
-  position: relative;
-  right: 0;
-  left: 0;
-  top: 52px;
-}
-</style>
