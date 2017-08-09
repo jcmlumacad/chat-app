@@ -26,16 +26,16 @@ Object.defineProperty(Array.prototype, 'tmjFind', {
         if (property == undefined) {
             // Find value in array
             return this.filter(function (val) {
-                return val == key;
-            })[0];
+                return val == key
+            })[0]
         }
 
         // Find value in array of objects
         return this.filter(function (obj) {
             if (obj.hasOwnProperty(property)) {
-                return obj[property] == key;
+                return obj[property] == key
             }
-        })[0];
+        })[0]
     },
     enumerable: false
-});
+})
