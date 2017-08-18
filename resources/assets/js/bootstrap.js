@@ -4,11 +4,13 @@ import VueRouter from 'vue-router'
 import axios from 'axios'
 import Moment from 'moment'
 import Form from './core/Form'
+import ToastPlugin from './components/plugins/toast/ToastPlugin'
 
 window.Vue = Vue
 window.Vuex = Vuex
 Vue.use(VueRouter)
 Vue.use(Vuex)
+Vue.use(ToastPlugin)
 
 window.axios = axios
 window.Moment = Moment

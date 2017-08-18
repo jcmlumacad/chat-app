@@ -10,6 +10,8 @@
         <button type="button" name="submit" class="form-control form-button" @click="validate()">Sign in</button>
       </form>
     </div>
+
+    <toast-manager ref="toast"></toast-manager>
   </div>
 </template>
 
@@ -31,8 +33,21 @@ export default {
                     store: this
                 })
             }
-            console.log('Validate error')
+
+            this.toast('Please input your credentials', {
+                className: 'tag is-danger',
+                closable: true
+            })
+        },
+        toast(message, options = {}) {
+            this.$refs.toast.showToast(message, options)
         }
+    },
+    mounted() {
+        this.$refs.toast.init({
+            max: 1,
+            position: 'bottom right'
+        })
     }
 }
 </script>
