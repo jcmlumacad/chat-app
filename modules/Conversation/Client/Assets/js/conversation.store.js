@@ -4,14 +4,12 @@ import * as types from '~/modules/Conversation/Client/Assets/js/conversation.mut
 
 const state = {
     all: [],
-    messages: [],
-    user: {}
+    conversation: {}
 }
 
 const getters = {
     conversations: state => state.all,
-    messages: state => state.messages,
-    user: state => state.user
+    conversation: state => state.conversation
 }
 
 const actions = {
@@ -21,9 +19,23 @@ const actions = {
         })
     },
 
-    getConversationById({ commit }, conversationId) {
-        Conversation.find(conversationId, conversation => {
-            commit(types.SHOW_CONVERSATION, { conversation })
+    createConversation({ commit, dispatch }, payload) {
+        Conversation.save(payload.message, conversation => {
+            commit(types.ADD_CONVERSATION, { conversation })
+            payload.message.conversation_id = conversation.id
+            dispatch('sendMessage', payload)
+        })
+    },
+
+    viewConversation({ commit }, payload) {
+        let conversation = payload.conversation
+        let $this = payload.store
+
+        $this.$router.push({
+            name: 'conversation.show',
+            params: {
+                id: conversation.id
+            }
         })
     }
 }
@@ -33,9 +45,8 @@ const mutations = {
         state.all = conversations
     },
 
-    [types.SHOW_CONVERSATION](state, { conversation }) {
-        state.messages = conversation.messages
-        state.user = conversation.user
+    [types.ADD_CONVERSATION](state, { conversation }) {
+        state.conversation = conversation
     }
 }
 

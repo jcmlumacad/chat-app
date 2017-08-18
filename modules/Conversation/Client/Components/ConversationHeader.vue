@@ -2,13 +2,13 @@
   <div class="conversation-header">
     <section class="hero is-info">
       <div class="hero-head">
-        <header>
-          <div class="is-fullhd">
+        <header class="nav">
+          <div class="container is-fullhd">
             <div class="nav-left">
-              <p class="nav-item">
+              <p class="nav-item back-icon">
                 <back></back>
               </p>
-              <p class="nav-item">
+              <p class="nav-item back-text">
                 Back
               </p>
             </div>

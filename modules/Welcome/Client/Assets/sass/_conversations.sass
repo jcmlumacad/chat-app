@@ -2,14 +2,48 @@
     margin-bottom: 0
 
 .box:hover
-    background: $box-highlight
+    background: $conversation-item_hover
     cursor: pointer
 
 .box
-    border-radius: 5px
+    // border-radius: 5px
+    border-radius: 0
     padding: 0.75rem
-    margin: 0.75rem
+    // margin: 0.75rem
     .image
         border-radius: 50%
-        border: 2px solid $online-image
         overflow: hidden
+        border: 2px solid $offline-image-border
+        > .default-image
+            font-size: 40px
+            position: absolute
+            top: 10px
+            bottom: 0
+            right: 0
+            left: 0
+            color: $default-image
+    .online
+        border: 2px solid $online-image-border
+
+.conversation-template
+    background: no-repeat url(//ssl.gstatic.com/chat/babble/sprites/ultraviolet-1463828b8583cdb6caec61ff3d846feb.png) 0 0
+    height: 205px
+    width: 146px
+    position: absolute
+    margin: 0 auto
+    left: 50%
+    top: 50%
+    transform: translateX(-50%)
+    margin-top: -120px
+
+.conversation-date
+    float: right
+    font-size: 12px
+    > .fa
+        vertical-align: middle
+
+.truncate
+    white-space: nowrap
+    width: 12em
+    overflow: hidden
+    text-overflow: ellipsis

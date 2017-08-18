@@ -6,6 +6,7 @@ import middleware from './lib/middleware'
 import csrf from './lib/csrf'
 import handler from './lib/handler'
 import mongoose from './lib/mongoose'
+import databaseSeeder from './lib/database-seeder'
 import routes from './lib/routes'
 import passport from './lib/passport'
 
@@ -41,6 +42,8 @@ csrf(app)
 handler(app)
 // Database configuration
 mongoose(app)
+// Database Seeder
+databaseSeeder()
 // Set of routes in an application
 routes(app)
 // Passport configuration

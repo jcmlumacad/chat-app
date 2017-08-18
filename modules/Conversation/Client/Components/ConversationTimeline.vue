@@ -1,13 +1,13 @@
 <template lang="html">
   <div class="conversation-timeline">
     <div class="messages-container">
-      <message-bubble v-for="message in messages" :key="message.id">
+      <message-bubble v-for="(message, key) in messages" :key="key">
         <template slot="content">
           <p v-text="message.value"></p>
         </template>
 
         <template slot="image">
-          <img :src="user.image" alt="Image">
+          <img src="http://placehold.it/64x64" alt="Image">
         </template>
       </message-bubble>
     </div>
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import { mapGetters } from 'vuex'
 import Conversation from '~/modules/Conversation/Client/Resources/Conversation'
 import MessageBubble from '~/modules/Message/Client/Components/MessageBubble'
 
@@ -28,7 +28,7 @@ export default {
     }),
     created() {
         if (this.$route.name === 'conversation.show') {
-            this.$store.dispatch('getConversationById', this.$route.params.id)
+            this.$store.dispatch('getMessagesById', this.$route.params.id)
         }
     }
 }

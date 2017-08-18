@@ -1,0 +1,3 @@
+export const CLEAR_STATE = 'CLEAR_STATE'
+export const SEND_MESSAGE = 'SEND_MESSAGE'
+export const SHOW_MESSAGES = 'SHOW_MESSAGES'

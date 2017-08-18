@@ -7,6 +7,7 @@
 </template>
 
 <script>
+import * as types from '~/modules/Message/Client/Assets/js/message.mutation'
 import ConversationHeader from '~/modules/Conversation/Client/Components/ConversationHeader'
 import ConversationTimeline from '~/modules/Conversation/Client/Components/ConversationTimeline'
 import ConversationResponse from '~/modules/Conversation/Client/Components/ConversationResponse'
@@ -17,6 +18,10 @@ export default {
         ConversationHeader,
         ConversationTimeline,
         ConversationResponse
+    },
+    beforeRouteLeave(to, from, next) {
+        this.$store.commit(types.CLEAR_STATE)
+        next()
     }
 }
 </script>

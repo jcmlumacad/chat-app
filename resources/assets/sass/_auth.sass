@@ -1,0 +1,48 @@
+.auth-pane
+    height: 100%
+    background: $auth-pane-dark
+    // background: -webkit-linear-gradient(right, $auth-pane-dark ,$auth-pane-light)
+    // background: -o-linear-gradient(right, $auth-pane-dark, $auth-pane-light)
+    // background: -moz-linear-gradient(right, $auth-pane-dark, $auth-pane-light)
+    // background: linear-gradient(right, $auth-pane-dark , $auth-pane-light)
+    > .login-container
+        background: $login-container
+        width: 350px
+        height: 200px
+        padding: 20px
+        position: absolute
+        top: 50%
+        left: 50%
+        margin: -100px 0 0 -175px
+        border-radius: 5px
+        > .login-title
+            text-align: center
+            font-weight: bold
+            font-size: larger
+        > .login-form
+            &.form-horizontal
+                position: relative
+            > .form-control
+                border: none
+                width: 100%
+                padding: 10px
+                border-bottom-style: groove
+                border-bottom-width: thin
+                outline: none
+                margin-bottom: 10px
+                &.form-button
+                    cursor: pointer
+                    font-style: italic
+                &.form-button:active
+                    background: $auth-pane-light
+    > .login-container:before
+        content: ''
+        width: 342px
+        height: 6px
+        position: absolute
+        top: 50%
+        left: 50%
+        margin: -106px 0 0 -171px
+        background: $login-container_before
+        border-top-left-radius: 5px
+        border-top-right-radius: 5px

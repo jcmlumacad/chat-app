@@ -1,5 +1,5 @@
 <template lang="html">
-  <div>
+  <div class="home-pane">
     <!-- HEADER -->
     <section class="hero is-info">
       <!-- Hero header: will stick at the top -->
@@ -7,9 +7,9 @@
         <header class="nav">
           <div class="container is-fullhd">
             <div class="nav-left">
-              <p class="nav-item">
+              <!-- <p class="nav-item">
                 <i class="fa fa-comments-o"></i>
-              </p>
+              </p> -->
               <p class="nav-item">
                 Conversations
               </p>
