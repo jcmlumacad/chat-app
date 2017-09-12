@@ -9,17 +9,14 @@ import mongoose from './lib/mongoose'
 import databaseSeeder from './lib/database-seeder'
 import routes from './lib/routes'
 import passport from './lib/passport'
+import sockets from './lib/sockets'
+import './lib/helpers'
 
 let app = express()
- // Load .env in the root directory of the this project
-let __env = env(`${__dirname}/.env`)
-
-// Get environment properties from a .env file for local development
-app.__env = __env
 
 // If the development is for testing purpose or development. Use 'local'
-if (app.__env.APP_ENV === 'local') {
-    app.__env.APP_URL = `${__env.APP_URL}:${__env.NODE_PORT}`
+if (env.APP_ENV === 'local') {
+    env.APP_URL = `${env.APP_URL}:${env.NODE_PORT}`
 }
 
 // Gzip Compress for compressing all accessed files
@@ -48,5 +45,7 @@ databaseSeeder()
 routes(app)
 // Passport configuration
 passport(app)
+// Socket configuration
+sockets(app)
 
 export default app

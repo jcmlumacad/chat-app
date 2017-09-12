@@ -2,7 +2,6 @@ import Token from '~/modules/Client/Server/Entities/token.entity'
 import ClientToken from '~/modules/Client/Server/Entities/client-token.entity'
 import Conversation from '~/modules/Conversation/Server/Entities/conversation.entity'
 import Message from '~/modules/Message/Server/Entities/message.entity'
-import * as helper from '~/lib/helpers'
 import view from '~/vendor/view'
 
 module.exports = method => {
@@ -21,7 +20,7 @@ module.exports = method => {
 
 function apiGet(req, res) {
     if (req.route.methods.get) {
-        req.query.value = helper.getCookie(req.headers.cookie, '_chat-token')
+        req.query.value = getCookie(req.headers.cookie, '_chat-token')
         if (req.query.value) {
             Token.findOne(req.query).then(token => {
                 ClientToken.findOne({ token_id: token.id }).then(clientToken => {
@@ -52,7 +51,7 @@ function show(req, res) {
 
 function store(req, res) {
     if (req.route.methods.post) {
-        req.query.value = helper.getCookie(req.headers.cookie, '_chat-token')
+        req.query.value = getCookie(req.headers.cookie, '_chat-token')
         if (req.query.value) {
             Token.findOne(req.query).then(token => {
                 ClientToken.findOne({ token_id: token.id }).then(clientToken => {

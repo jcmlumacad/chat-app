@@ -22,6 +22,7 @@
   "dependencies": {
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
+    "chalk": "^2.1.0",
     "compression": "^1.6.2",
     "cookie-parser": "^1.4.3",
     "csurf": "^1.9.0",
@@ -35,6 +36,7 @@
     "node-env-file": "^0.1.8",
     "passport": "^0.3.2",
     "passport-local": "^1.0.0",
+    "socket.io": "^2.0.3",
     "tmj-passport": "^1.0.0",
     "vue-router": "^2.7.0",
     "vuex": "^2.3.1"
