@@ -1,8 +1,11 @@
-import route from '~/vendor/router'
+/* eslint no-undef: */
 
 export default () => {
-    route.setModule('Auth')
+    Route.setModule('Auth')
 
-    route.get('/login', 'AuthController@login')
-    route.post('/login', 'AuthController@login')
+    Route.get('/login', 'AuthController@login')
+    Route.post('/login', 'AuthController@login')
+
+    Route.get('/isLoggedIn', 'AuthController@isLoggedIn')
+    Route.get('/api/me', 'AuthController@me', ['Auth::protect'])
 }

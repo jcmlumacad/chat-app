@@ -39,17 +39,9 @@ import CreateConversation from '~/modules/Welcome/Client/Components/CreateConver
 
 export default {
     name: 'home',
-    data() {
-        return { active: false }
-    },
     components: {
         Conversations,
         CreateConversation
-    },
-    methods: {
-        toggle() {
-            this.active = !this.active
-        }
     }
 }
 </script>

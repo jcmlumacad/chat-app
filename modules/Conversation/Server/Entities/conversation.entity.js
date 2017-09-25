@@ -22,10 +22,17 @@ class Conversation {
         }
 
         let conversation = new Schema(params)
-        conversation.save(error => {
+        return conversation.save((error, _conversation) => {
             if (error) throw error
+            return _conversation
         })
-        return conversation
+    }
+
+    static update(params) {
+        return Schema.findByIdAndUpdate(params.id, { last_message: params.value }, { new: true })
+            .exec(error => {
+                if (error) throw error
+            })
     }
 }
 

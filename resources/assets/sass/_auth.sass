@@ -1,6 +1,7 @@
 .auth-pane
     height: 100%
-    background: $auth-pane-dark
+    background-image: url('/assets/images/1.jpg')
+    background-size: cover
     // background: -webkit-linear-gradient(right, $auth-pane-dark ,$auth-pane-light)
     // background: -o-linear-gradient(right, $auth-pane-dark, $auth-pane-light)
     // background: -moz-linear-gradient(right, $auth-pane-dark, $auth-pane-light)
@@ -19,6 +20,8 @@
             text-align: center
             font-weight: bold
             font-size: larger
+            font-family: 'Covered By Your Grace', cursive
+            font-size: 1.5em
         > .login-form
             &.form-horizontal
                 position: relative
@@ -30,19 +33,27 @@
                 border-bottom-width: thin
                 outline: none
                 margin-bottom: 10px
+                &:focus
+                    color: $input
+                    background-color: $white
+                    border-color: $input-info-border
+                    outline: 0
                 &.form-button
                     cursor: pointer
                     font-style: italic
+                    border-radius: 25px
+                    background-color: $tag-info
+                    color: $white
                 &.form-button:active
                     background: $auth-pane-light
-    > .login-container:before
-        content: ''
-        width: 342px
-        height: 6px
-        position: absolute
-        top: 50%
-        left: 50%
-        margin: -106px 0 0 -171px
-        background: $login-container_before
-        border-top-left-radius: 5px
-        border-top-right-radius: 5px
+    // > .login-container:before
+    //     content: ''
+    //     width: 342px
+    //     height: 6px
+    //     position: absolute
+    //     top: 50%
+    //     left: 50%
+    //     margin: -106px 0 0 -171px
+    //     background: $login-container_before
+    //     border-top-left-radius: 5px
+    //     border-top-right-radius: 5px

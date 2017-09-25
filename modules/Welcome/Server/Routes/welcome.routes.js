@@ -1,7 +1,7 @@
-import route from '~/vendor/router'
+/* eslint no-undef: */
 
 export default () => {
-    route.setModule('Welcome')
+    Route.setModule('Welcome')
 
-    route.get('/', 'WelcomeController@index')
+    Route.get('/', 'WelcomeController@index')
 }

@@ -20,6 +20,9 @@ export default {
         ConversationResponse
     },
     beforeRouteLeave(to, from, next) {
+        socket.emit('leaveRoom', {
+            id: from.params.id
+        })
         this.$store.commit(types.CLEAR_STATE)
         next()
     }

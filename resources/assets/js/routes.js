@@ -10,6 +10,11 @@ let routes = [
         component: Home
     },
     {
+        name: 'my-conversations',
+        path: '/me/conversations',
+        component: Home
+    },
+    {
         name: 'conversation.create',
         path: '/conversation/create',
         component: Conversation

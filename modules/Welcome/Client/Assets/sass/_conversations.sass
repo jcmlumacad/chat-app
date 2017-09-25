@@ -11,9 +11,6 @@
     padding: 0.75rem
     // margin: 0.75rem
     .image
-        border-radius: 50%
-        overflow: hidden
-        border: 2px solid $offline-image-border
         > .default-image
             font-size: 40px
             position: absolute
@@ -22,6 +19,17 @@
             right: 0
             left: 0
             color: $default-image
+        > .image-content
+            border-radius: 50%
+            overflow: hidden
+            border: 2px solid $offline-image-border
+        > .tag
+            position: absolute
+            bottom: 0
+            right: 0
+            transform: translate(25%, 25%)
+            height: 39%
+            width: 40%
     .online
         border: 2px solid $online-image-border
 

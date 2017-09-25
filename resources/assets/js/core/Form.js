@@ -1,4 +1,4 @@
-/* eslint no-undef: */
+/* global axios */
 
 import Errors from './Errors'
 

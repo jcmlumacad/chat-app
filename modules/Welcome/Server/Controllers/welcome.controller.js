@@ -1,4 +1,4 @@
-import view from '~/vendor/view'
+/* eslint no-undef: */
 
 module.exports = method => {
     let methods = {

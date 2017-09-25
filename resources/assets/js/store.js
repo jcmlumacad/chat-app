@@ -1,4 +1,5 @@
-/* eslint no-undef: */
+/* global Vuex */
+
 import auth from '~/modules/Auth/Client/Assets/js/auth.store'
 import conversation from '~/modules/Conversation/Client/Assets/js/conversation.store'
 import message from '~/modules/Message/Client/Assets/js/message.store'

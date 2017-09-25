@@ -1,3 +1,5 @@
+/* eslint no-undef: */
+
 // Router core object
 let core = {
     // Options: This is for route group. It uses `prefix` and `middleware`
@@ -14,7 +16,7 @@ let core = {
                 module,
                 middlewares: (core.allOptions !== undefined && core.allOptions.middleware !== undefined) ? core.allOptions.middleware : middlewares,
                 uri: (core.allOptions !== undefined && core.allOptions.prefix !== undefined) ? `/${core.allOptions.prefix}${uri}` : uri,
-                controller: core.toController(str.shift())
+                controller: toController(str.shift())
             }
         },
         callback: (res, req, next) => {
@@ -28,11 +30,10 @@ let core = {
     // Global function for route.
     route: (uri, controller, middlewares, method) => {
         core.config.set(controller, uri, core.module, middlewares)
-        core.config.app[method](
-            core.trimUri(core.router.uri),
-            (core.router.middlewares) ? core.middleware(core.router.middlewares) : core.config.callback,
-            require(`./../modules/${core.router.module}/Server/Controllers/${core.router.controller}`)(core.router.str.pop())
-        )
+        const url = trimUri(core.router.uri)
+        const middleware = (core.router.middlewares) ? core.middleware(core.router.middlewares) : core.config.callback
+        const func = require(`./../modules/${core.router.module}/Server/Controllers/${core.router.controller}`)(core.router.str.pop())
+        core.config.app[method](url, middleware, func)
     },
     // Route get for GET/HEAD Method
     get: (uri, controller, middlewares) => {
@@ -92,7 +93,6 @@ let core = {
     // Route middlewares: Can add 1 or more middleware in a single route
     middleware: middlewares => {
         let groups = []
-
         middlewares.forEach(middleware => {
             let str = middleware.split('::'),
                 module = str.shift(),
@@ -100,6 +100,7 @@ let core = {
 
             groups.push(require(`./../modules/${module}/Server/Middlewares/${module.toLowerCase()}.middleware`)(method))
         })
+        return groups
     },
     // When using the route group, always start with a `group` function then ends with the `endGroup` function
     group: (options, callback) => {
@@ -115,11 +116,7 @@ let core = {
         core.config.app.all(uri, (req, res) => {
             callback(req, res)
         })
-    },
-    // Add suffix `controller` per file. e.g. `welcome.controller`
-    toController: value => value.replace(/([a-z](?=[A-Z]))Controller/g, '$1.controller').toLowerCase(),
-    // Trim slashes
-    trimUri: value => value.replace(/\/$/, '')
+    }
 }
 
 export default core

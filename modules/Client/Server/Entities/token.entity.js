@@ -2,8 +2,8 @@ import Schema from '../Schemas/token.schema'
 
 class Token {
     static findOne(query) {
-        return Schema.findOne(query).exec((err, token) => {
-            if (err) throw err
+        return Schema.findOne(query).exec((error, token) => {
+            if (error) throw error
             return token
         })
     }

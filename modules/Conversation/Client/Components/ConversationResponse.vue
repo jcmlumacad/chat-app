@@ -1,6 +1,9 @@
 <template lang="html">
-  <div class="conversation-response">
-    <textarea class="textarea is-default" type="text" placeholder="Enter message" @keyup.enter.prevent="inputHandler" @keypress.enter="inputHandler" v-model="message"></textarea>
+  <div>
+    <div class="conversation-response">
+      <textarea class="textarea is-default" type="text" placeholder="Enter message" @keyup.enter.prevent="inputHandler" @keypress.enter="inputHandler" v-model="message" @focus="onSeen()"></textarea>
+    </div>
+    <toast-manager ref="toast"></toast-manager>
   </div>
 </template>
 
@@ -12,8 +15,7 @@ export default {
     name: 'conversation-response',
     data() {
         return {
-            message: '',
-            count: 0
+            message: ''
         }
     },
     computed: mapGetters({
@@ -27,23 +29,54 @@ export default {
                 this.submitMessage()
             }
         },
+        onSeen() {
+            if (this.$route.name == 'conversation.show') {
+                let params = { conversation_id: this.$route.params.id }
+                this.$store.dispatch('markAsRead', params).then(() => {
+                    socket.emit('markAsRead', params)
+                })
+            }
+        },
         submitMessage() {
             let length = this.message.trim().length
             if (length) {
-                this.count++
-                let message = {
-                    id: this.count,
-                    value: this.message,
-                    conversation_id: this.$route.params.id != undefined ? this.$route.params.id : this.conversation.id
-                }
+                let message = { value: this.message }
                 this.message = ''
                 if (this.$route.name == 'conversation.create' && this.messages.length == 0) {
-                    this.$store.dispatch('createConversation', { message })
+                    this.$store.dispatch('createConversation', { message }).then(response => {
+                        if (response.error) {
+                            this.toast(response.message, {
+                                className: this.$refs.toast.styles.NORMAL_STYLE.DANGER,
+                                closable: true
+                            })
+                        } else {
+                            socket.emit('createdConversation', response)
+                        }
+                    })
                 } else {
-                    this.$store.dispatch('sendMessage', { message })
+                    message.conversation_id = this.$route.params.id || this.conversation.data.id
+                    this.$store.dispatch('sendMessage', { message }).then(response => {
+                        if (response.error) {
+                            this.toast(response.message, {
+                                className: this.$refs.toast.styles.NORMAL_STYLE.DANGER,
+                                closable: true
+                            })
+                        } else {
+                            socket.emit('newMessage', response)
+                        }
+                    })
                 }
             }
+        },
+        toast(message, options) {
+            this.$refs.toast.showToast(message, options)
         }
+    },
+    mounted() {
+        this.$refs.toast.init({
+            max: 1,
+            position: this.$refs.toast.POSITION.BOTTOM_RIGHT
+        })
     }
 }
 </script>

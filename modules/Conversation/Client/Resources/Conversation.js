@@ -1,19 +1,19 @@
-/* eslint no-undef: */
+/* global axios */
 
 class Conversation {
-    static all(callback) {
+    static all() {
         return axios.get('/api/conversation')
-            .then(conversations => callback(conversations.data))
+            .then(response => response.data)
     }
 
-    static find(id, callback) {
+    static find(id) {
         return axios.get(`/api/conversation/${id}`)
-            .then(conversation => callback(conversation.data))
+            .then(response => response.data)
     }
 
-    static save(payload, callback) {
+    static save(payload) {
         return axios.post('/api/conversation', payload)
-            .then(conversation => callback(conversation.data))
+            .then(response => response.data)
     }
 }
 

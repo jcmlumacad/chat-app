@@ -1,5 +1,6 @@
 import Client from '~/modules/Client/Server/Entities/client.entity'
 import Token from '~/modules/Client/Server/Entities/token.entity'
+import User from '~/modules/User/Server/Entities/user.entity'
 import ClientToken from '~/modules/Client/Server/Entities/client-token.entity'
 
 module.exports = method => {
@@ -21,10 +22,16 @@ function generate(req, res) {
                 let data = Token.save(query)
                 let client = Client.save(data)
                 ClientToken.save(data, client)
-                res.json(data)
+                let user = {
+                    name: 'User Agent',
+                    email: null,
+                    role: 'client'
+                }
+                User.save(user)
+                return res.json(data)
             }
 
-            res.json(token)
+            return res.json(token)
         })
     }
 }

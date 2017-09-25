@@ -1,7 +1,7 @@
-import route from '~/vendor/router'
+/* eslint no-undef: */
 
 export default () => {
-    route.setModule('Client')
+    Route.setModule('Client')
 
-    route.get('/generate-token', 'ClientController@generate')
+    Route.get('/generate-token', 'ClientController@generate')
 }

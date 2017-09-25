@@ -3,6 +3,7 @@
 /storage
 /node_modules
 /bower_components
+/resources/assets/js/env.js
 package-lock.json
 mix-manifest.json
 npm-debug.log

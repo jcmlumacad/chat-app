@@ -7,13 +7,18 @@ let messageSchema = new Schema({
         type: String,
         require: true
     },
-    conversation_id: {
+    _conversation: {
         type: Schema.Types.ObjectId,
-        refs: 'Clients'
+        refs: 'Conversations'
     },
-    client_id: {
-        type: Schema.Types.ObjectId,
+    _sender: {
+        type: Array,
         require: true
+    },
+    is_read: {
+        type: Boolean,
+        require: true,
+        default: false
     }
 })
 

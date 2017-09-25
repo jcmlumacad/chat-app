@@ -2,7 +2,7 @@ import Mongoose from 'mongoose'
 import sharedPlugin from '~/modules/Shared/Server/Schemas/shared.schema'
 
 let Schema = Mongoose.Schema
-let clientSchema = new Schema({
+let conversationSchema = new Schema({
     last_message: {
         type: String,
         require: true
@@ -13,6 +13,6 @@ let clientSchema = new Schema({
     }
 })
 
-clientSchema.plugin(sharedPlugin)
+conversationSchema.plugin(sharedPlugin)
 
-export default Mongoose.model('Conversations', clientSchema)
+export default Mongoose.model('Conversations', conversationSchema)

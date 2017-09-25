@@ -1,17 +1,18 @@
-import route from '~/vendor/router'
+/* eslint no-undef: */
 
 export default () => {
-    route.setModule('Conversation')
+    Route.setModule('Conversation')
 
-    route.group({ prefix: 'api/conversation' }, () => {
-        route.get('/', 'ConversationController@apiGet')
-        route.post('/', 'ConversationController@store')
-        route.get('/:id', 'ConversationController@apiShow')
-        route.get('/:id/messages', 'ConversationController@getMessagesById')
-        route.post('/:id/message', 'ConversationController@storeMessage')
+    Route.group({ prefix: 'api/conversation' }, () => {
+        Route.get('/', 'ConversationController@apiGet')
+        Route.post('/', 'ConversationController@store')
+        Route.get('/:id', 'ConversationController@apiShow')
+        Route.get('/:id/messages', 'ConversationController@getMessagesById')
+        Route.post('/:id/message', 'ConversationController@storeMessage')
+        Route.update('/:id/read', 'ConversationController@markAllAsRead')
     })
-    route.endGroup()
+    Route.endGroup()
 
-    route.get('/conversation/create', 'ConversationController@create')
-    route.get('/conversation/:id', 'ConversationController@show')
+    Route.get('/conversation/create', 'ConversationController@create')
+    Route.get('/conversation/:id', 'ConversationController@show')
 }

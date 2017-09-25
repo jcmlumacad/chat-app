@@ -1,5 +1,4 @@
 import express from 'express'
-import env from 'node-env-file'
 import compress from './lib/compress'
 import bodyParser from './lib/body-parser'
 import middleware from './lib/middleware'
@@ -9,15 +8,9 @@ import mongoose from './lib/mongoose'
 import databaseSeeder from './lib/database-seeder'
 import routes from './lib/routes'
 import passport from './lib/passport'
-import sockets from './lib/sockets'
 import './lib/helpers'
 
 let app = express()
-
-// If the development is for testing purpose or development. Use 'local'
-if (env.APP_ENV === 'local') {
-    env.APP_URL = `${env.APP_URL}:${env.NODE_PORT}`
-}
 
 // Gzip Compress for compressing all accessed files
 compress(app)
@@ -38,14 +31,12 @@ csrf(app)
 // Centralized error handler
 handler(app)
 // Database configuration
-mongoose(app)
+mongoose()
 // Database Seeder
 databaseSeeder()
 // Set of routes in an application
 routes(app)
 // Passport configuration
-passport(app)
-// Socket configuration
-sockets(app)
+passport()
 
 export default app

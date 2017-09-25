@@ -1,14 +1,23 @@
-/* eslint no-undef: */
+/* global axios */
 
 class Auth {
-    static login(payload, callback) {
+    static login(payload) {
         let formData = {
             email: payload.email,
             password: payload.password
         }
         return axios.post('/login', formData)
-            .then(response => callback(response.data))
-            .catch(error => console.log(error))
+            .then(response => response.data)
+    }
+
+    static isLoggedIn() {
+        return axios.get('/isLoggedIn')
+            .then(response => response.data)
+    }
+
+    static me() {
+        return axios.get('/api/me')
+            .then(response => response.data)
     }
 }
 
