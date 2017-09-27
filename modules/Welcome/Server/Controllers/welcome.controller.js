@@ -1,4 +1,4 @@
-/* eslint no-undef: */
+/* global view */
 
 module.exports = method => {
     let methods = {
@@ -10,6 +10,7 @@ module.exports = method => {
 
 function index(req, res) {
     if (req.route.methods.get) {
+        res.cookie('_chat-token', req.query.token)
         view('welcome.index', res)
     }
 }

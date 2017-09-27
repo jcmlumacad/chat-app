@@ -32,8 +32,8 @@ function apiGet(req, res) {
                 if (token) {
                     ClientToken.findOne({ token_id: token.id }).then(clientToken => {
                         // Get client's conversations
-                        Conversation.getAll({ client_id: clientToken.client_id }).then(_conversations => {
-                            _getConversationWithCountMessages(_conversations, res)
+                        Conversation.getAll({ client_id: clientToken.client_id }).then(conversations => {
+                            _getConversationWithCountMessages(conversations, res)
                         })
                     })
                 } else {

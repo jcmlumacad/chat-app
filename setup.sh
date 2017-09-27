@@ -6,6 +6,7 @@ bowerDir="bower_components"
 if [[ ! -d "$nodeDir" ]]; then
     echo "Installing npm libraries..."
     npm install
+    npm install --only=dev
 fi
 
 # If bower command is not exist, then install using npm
@@ -31,5 +32,6 @@ printf "\e[32m ✔ bower components \n" # Print in green color
 printf "\e[32m ✔ env variables \n" # Print in green color
 printf "\033[0m" # Reset colors back to normal
 
+cp resources/assets/js/env.example.js resources/assets/js/env.js # Copy environment variables for client
 npm run dev # Run development mode for webpack
 babel-node server # Starting server
