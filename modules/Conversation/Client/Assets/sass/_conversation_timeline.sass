@@ -1,12 +1,15 @@
 .conversation-timeline
     top: 60px
-    background-color: $timeline-pane
-    padding: 0.75rem
-    position: absolute
-    left: 0
-    right: 0
-    bottom: 55px
-    overflow: auto
+    background-color: $conversation-timeline
+    padding: 0.75rem;
+    position: absolute;
+    left: 0;
+    right: 0;
+    overflow: auto;
+    height: calc(100% - 115.5px)
+    &.is-admin
+        top: 0px;
+        height: calc(100% - 55.5px)
     > .messages-container
         position: absolute
         max-height: 100%

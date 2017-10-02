@@ -1,6 +1,5 @@
 import Mongoose from 'mongoose'
 import bcrypt from 'bcrypt'
-import sharedPlugin from '~/modules/Shared/Server/Schemas/shared.schema'
 
 let tokenSchema = new Mongoose.Schema({
     value: {
@@ -21,7 +20,5 @@ let tokenSchema = new Mongoose.Schema({
         require: true
     }
 })
-
-tokenSchema.plugin(sharedPlugin)
 
 export default Mongoose.model('Tokens', tokenSchema)

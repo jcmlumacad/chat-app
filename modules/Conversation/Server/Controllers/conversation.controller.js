@@ -14,7 +14,7 @@ module.exports = method => {
         show,
         store,
         storeMessage,
-        getMessagesById,
+        getMessagesByConversationId,
         markAllAsRead
     }
 
@@ -68,25 +68,32 @@ function show(req, res) {
 function store(req, res) {
     if (req.route.methods.post) {
         req.query.value = getCookie(req.headers.cookie, '_chat-token') || ''
-        Token.findOne(req.query).then(token => {
-            if (token) {
-                ClientToken.findOne({ token_id: token.id }).then(clientToken => {
-                    req.body.client_id = clientToken.client_id
+        if (req.isAuthenticated()) {
+            Conversation.save(req.body).then(_conversation => res.json({
+                count: 1,
+                data: _conversation
+            }))
+        } else {
+            Token.findOne(req.query).then(token => {
+                if (token) {
+                    ClientToken.findOne({ token_id: token.id }).then(clientToken => {
+                        req.body.client_id = clientToken.client_id
 
-                    Conversation.save(req.body).then(_conversation => {
-                        res.json({
-                            count: 0,
-                            data: _conversation
+                        Conversation.save(req.body).then(_conversation => {
+                            res.json({
+                                count: 1,
+                                data: _conversation
+                            })
                         })
                     })
-                })
-            } else {
-                res.json({
-                    error: true,
-                    message: 'Invalid token. Please clear your cookies then try again.'
-                })
-            }
-        })
+                } else {
+                    res.json({
+                        error: true,
+                        message: 'Invalid token. Please clear your cookies then try again.'
+                    })
+                }
+            })
+        }
     }
 }
 
@@ -121,7 +128,7 @@ function storeMessage(req, res) {
     }
 }
 
-function getMessagesById(req, res) {
+function getMessagesByConversationId(req, res) {
     if (req.route.methods.get) {
         Message.find({ _conversation: req.params.id }).then(messages => res.json(messages))
     }

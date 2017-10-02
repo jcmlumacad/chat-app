@@ -1,5 +1,4 @@
 import Mongoose from 'mongoose'
-import sharedPlugin from '~/modules/Shared/Server/Schemas/shared.schema'
 
 let Schema = Mongoose.Schema
 let conversationSchema = new Schema({
@@ -12,7 +11,5 @@ let conversationSchema = new Schema({
         refs: 'Clients'
     }
 })
-
-conversationSchema.plugin(sharedPlugin)
 
 export default Mongoose.model('Conversations', conversationSchema)

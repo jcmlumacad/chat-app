@@ -5,8 +5,9 @@
         <article class="media">
           <div class="media-left">
             <figure class="image is-64x64">
+              <i class="fa fa-user-circle fa-4x"></i>
               <!-- <i class="fa fa-address-card-o default-image"></i> -->
-              <img src="/assets/images/group.png" class="image-content">
+              <!-- <img src="/assets/images/group.png" class="image-content"> -->
               <label class="tag is-small is-danger" v-if="conversation.count > 99">99+</label>
               <label class="tag is-small is-danger" v-if="conversation.count < 100 && conversation.count > 0" v-text="conversation.count"></label>
             </figure>

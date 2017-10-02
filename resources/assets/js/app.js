@@ -12,6 +12,10 @@ new Vue({
 
     router,
 
+    created() {
+        this.$store.dispatch('isLoggedIn')
+    },
+
     mounted() {
         socket.on('newMessage', message => {
             this.$store.commit(types.SEND_MESSAGE, { message })

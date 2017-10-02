@@ -1,2 +1,20 @@
 .conversation
-    height: 60px
+    height: 100%
+    > .container-section
+        height: 100%
+        width: 100%
+        > .conversation-section
+            width: 25%
+            height: calc(100% - 60px)
+            position: absolute
+            overflow: auto
+            > .is-fullhd
+                height: 100%
+                max-width: 100%
+        > .mini-message-section
+            width: 75%;
+            height: calc(100% - 60px);
+            position: absolute;
+            margin-left: 25%;
+            overflow: auto
+

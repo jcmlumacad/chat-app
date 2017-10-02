@@ -1,6 +1,7 @@
 import VueRouter from 'vue-router'
 import Auth from './components/Auth'
 import Home from './components/Home'
+import Settings from './components/Settings'
 import Conversation from './components/Conversation'
 
 let routes = [
@@ -28,6 +29,11 @@ let routes = [
         name: 'login',
         path: '/login',
         component: Auth
+    },
+    {
+        name: 'settings',
+        path: '/settings',
+        component: Settings
     }
 ]
 

@@ -33,9 +33,12 @@
                     right: 0
                     border: 2px solid $online-image-border
                     background-color: $timeline-pane
+                    > .fa-image
+                        font-size: 2.8em
+                        color: $default-image
             > .message-container
                 border-radius: 2px
-                margin-left: -24px
+                margin-left: -20px
                 &.message-container-right
                     border-radius: 2px
                     display: inline-block
@@ -56,9 +59,10 @@
                     word-break: break-all
                     &.message-right
                         padding: 0.25rem 0.75rem
-    // > .message-timestamp
-    //     text-align: left
-    //     &.message-container-right
-    //         text-align: right
-    //     > .message-content
-    //         font-size: 12px
+            > .message-content
+                font-size: 12px
+                &.left
+                    text-align: left
+                    line-height: 0
+                &.right
+                    text-align: right

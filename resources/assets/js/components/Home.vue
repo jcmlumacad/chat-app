@@ -1,47 +1,32 @@
 <template lang="html">
   <div class="home-pane">
-    <!-- HEADER -->
-    <section class="hero is-info">
-      <!-- Hero header: will stick at the top -->
-      <div class="hero-head">
-        <header class="nav">
-          <div class="container is-fullhd">
-            <div class="nav-left">
-              <!-- <p class="nav-item">
-                <i class="fa fa-comments-o"></i>
-              </p> -->
-              <p class="nav-item">
-                Conversations
-              </p>
-            </div>
-            <div class="nav-right">
-              <p class="nav-item">
-                <create-conversation></create-conversation>
-              </p>
-            </div>
-          </div>
-        </header>
-      </div>
-    </section>
+    <home-header></home-header>
 
     <!-- CONTAINER -->
-    <section class="conversation-section">
-      <div class="is-fullhd">
-        <conversations></conversations>
+    <section class="container-section">
+      <div class="conversation-section" :class="{ 'is-auth': config.isLoggedIn }">
+        <div class="is-fullhd">
+          <conversations></conversations>
+        </div>
       </div>
+      <div class="message-section" v-if="config.isLoggedIn"></div>
     </section>
   </div>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+import HomeHeader from '~/modules/Welcome/Client/Components/HomeHeader'
 import Conversations from '~/modules/Welcome/Client/Components/Conversations'
-import CreateConversation from '~/modules/Welcome/Client/Components/CreateConversation'
 
 export default {
     name: 'home',
     components: {
-        Conversations,
-        CreateConversation
-    }
+        HomeHeader,
+        Conversations
+    },
+    computed: mapGetters({
+        config: 'config'
+    })
 }
 </script>

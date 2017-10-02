@@ -1,5 +1,4 @@
 import Mongoose from 'mongoose'
-import sharedPlugin from '~/modules/Shared/Server/Schemas/shared.schema'
 
 let clientSchema = new Mongoose.Schema({
     name: {
@@ -7,7 +6,5 @@ let clientSchema = new Mongoose.Schema({
         require: true
     }
 })
-
-clientSchema.plugin(sharedPlugin)
 
 export default Mongoose.model('Clients', clientSchema)

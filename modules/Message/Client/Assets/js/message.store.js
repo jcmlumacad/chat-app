@@ -13,18 +13,21 @@ const actions = {
     sendMessage({ commit }, payload) {
         return Message.save(payload.message).then(message => {
             commit(types.SEND_MESSAGE, { message })
+            commit(types.UPDATE_ACTIVE_CONVERSATION, { message })
             return message
         })
     },
 
     getMessagesById({ commit }, conversationId) {
-        Message.find(conversationId).then(messages => {
+        return Message.find(conversationId).then(messages => {
             commit(types.SHOW_MESSAGES, { messages })
+            return messages
         })
     },
 
     markAsRead({ commit }, payload) {
         return Message.markAllAsRead(payload).then(message => {
+            commit(types.MARK_AS_READ, { payload })
             return message
         })
     }
@@ -41,7 +44,11 @@ const mutations = {
 
     [types.CLEAR_STATE](_state) {
         _state.messages = []
-    }
+    },
+
+    [types.UPDATE_ACTIVE_CONVERSATION](_state, { payload }) {
+        console.log('payload', payload);
+    },
 }
 
 export default {

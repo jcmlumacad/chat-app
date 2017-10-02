@@ -33,7 +33,7 @@ const actions = {
         })
     },
 
-    viewConversation({ commit }, payload) {
+    viewConversation({ commit, dispatch }, payload) {
         let conversation = payload.conversation.data
         let $this = payload.store
 
@@ -44,6 +44,11 @@ const actions = {
             params: {
                 id: conversation.id
             }
+        })
+
+        dispatch('getMessagesById', conversation.id).then(() => {
+            let element = document.getElementById('element')
+            element.scrollTop = element.scrollHeight - element.clientHeight
         })
     }
 }
@@ -58,7 +63,7 @@ const mutations = {
     },
 
     [types.CREATED_CONVERSATION](_state, { conversation }) {
-        _state.all.push(conversation.payload)
+        _state.all.unshift(conversation.payload)
     },
 
     [types.UPDATE_CONVERSATION](_state, { payload }) {
@@ -67,7 +72,17 @@ const mutations = {
         })
         if (conversation) {
             conversation.data.last_message = payload.value
+            conversation.data.updated_at = new Date()
             conversation.count++
+        }
+    },
+
+    [types.MARK_AS_READ](_state, { payload }) {
+        let conversation = _.find(_state.all, _conversation => {
+            return _conversation.data.id == payload.conversation_id
+        })
+        if (conversation) {
+            conversation.count = 0
         }
     }
 }

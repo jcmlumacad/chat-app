@@ -37,6 +37,10 @@ export default {
                 })
             }
         },
+        scrollToBottom() {
+            let element = document.getElementById('element')
+            element.scrollTop = element.scrollHeight - element.clientHeight
+        },
         submitMessage() {
             let length = this.message.trim().length
             if (length) {
@@ -63,6 +67,7 @@ export default {
                             })
                         } else {
                             socket.emit('newMessage', response)
+                            this.scrollToBottom()
                         }
                     })
                 }

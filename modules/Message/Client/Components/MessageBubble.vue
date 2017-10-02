@@ -15,9 +15,16 @@
           </div>
         </div>
       </div>
+      <!-- <p class="message-content">{{ name }} . {{ message.created_at | ago }}</p> -->
+    </div>
+    <div class="row">
+      <div class="inversePair" :class="{ sender: right }"></div>
+      <div class="inversePair">
+        <p class="message-content" :class="{ left: !right, right: right }">{{ name }} &middot; {{ message.created_at | time }}</p>
+      </div>
     </div>
     <!-- <div class="message-timestamp" :class="{ 'message-container-right': right }">
-      <p class="message-content">{{ message.created_at | ago }}</p>
+      <p class="message-content">{{ name }} . {{ message.created_at | ago }}</p>
     </div> -->
   </div>
 </template>
@@ -42,6 +49,14 @@ export default {
     filters: {
         ago(date) {
             return Moment.utc(date).fromNow()
+        },
+        time(date) {
+            return Moment(date).format('h:mm a')
+        }
+    },
+    computed: {
+        name() {
+            return this.message._sender.length ? this.message._sender[0].name : 'Client'
         }
     },
     created() {

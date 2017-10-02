@@ -7,7 +7,7 @@ export default () => {
         Route.get('/', 'ConversationController@apiGet')
         Route.post('/', 'ConversationController@store')
         Route.get('/:id', 'ConversationController@apiShow')
-        Route.get('/:id/messages', 'ConversationController@getMessagesById')
+        Route.get('/:id/messages', 'ConversationController@getMessagesByConversationId')
         Route.post('/:id/message', 'ConversationController@storeMessage')
         Route.update('/:id/read', 'ConversationController@markAllAsRead')
     })

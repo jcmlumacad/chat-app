@@ -2,10 +2,12 @@ import Schema from '../Schemas/conversation.schema'
 
 class Conversation {
     static getAll(query) {
-        return Schema.find(query).exec((error, conversations) => {
-            if (error) throw error
-            return conversations
-        })
+        return Schema.find(query)
+            .sort({ updated_at: -1 })
+            .exec((error, conversations) => {
+                if (error) throw error
+                return conversations
+            })
     }
 
     static findOne(query) {
@@ -29,7 +31,10 @@ class Conversation {
     }
 
     static update(params) {
-        return Schema.findByIdAndUpdate(params.id, { last_message: params.value }, { new: true })
+        return Schema.findByIdAndUpdate(params.id, {
+            last_message: params.value,
+            updated_at: new Date()
+        }, { new: true })
             .exec(error => {
                 if (error) throw error
             })

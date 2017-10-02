@@ -1,5 +1,4 @@
 import Mongoose from 'mongoose'
-import sharedPlugin from '~/modules/Shared/Server/Schemas/shared.schema'
 
 let Schema = Mongoose.Schema
 let clientTokenSchema = new Schema({
@@ -12,7 +11,5 @@ let clientTokenSchema = new Schema({
         refs: 'Tokens'
     }
 })
-
-clientTokenSchema.plugin(sharedPlugin)
 
 export default Mongoose.model('ClientTokens', clientTokenSchema)

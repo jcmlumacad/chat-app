@@ -4,11 +4,22 @@
       <p class="login-title">Be Chat</p>
 
       <form class="login-form form-horizontal">
-        <input type="email" name="email" placeholder="Email" class="form-control" v-model="email" autofocus @keypress.enter="validate()" required>
-        <input type="password" name="password" placeholder="Password" class="form-control" v-model="password" @keypress.enter="validate()" required>
-
-        <button type="button" name="submit" class="form-control form-button" @click="validate()">Sign in</button>
+        <div class="form-group">
+          <label class="control-label">Email Address</label>
+          <input type="email" name="email" class="form-control" v-model="email" autofocus @keypress.enter="validate()" required>
+        </div>
+        <div class="form-group">
+          <label class="control-label">Password</label>
+          <input type="password" name="password" class="form-control" v-model="password" @keypress.enter="validate()" required>
+        </div>
+        <div class="form-group">
+          <button type="button" name="submit" class="form-button" @click="validate()">Sign in</button>
+        </div>
       </form>
+
+      <div class="copyright">
+        <small>2017 &copy; TMJP BPO Services Inc.</small>
+      </div>
     </div>
 
     <toast-manager ref="toast"></toast-manager>
