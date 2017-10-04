@@ -1,6 +1,10 @@
 <template lang="html">
   <div>
-    <div :class="{ 'conversation-template': conversations.length == 0 }">
+    <div :class="{ 'conversation-template': conversations.length == 0, 'conversation-auth': config.isLoggedIn }">
+      <div v-if="conversations.length == 0 && config.isLoggedIn" class="no-conversations">
+        <img src="/assets/images/bubble.png" class="no-conversation-icon">
+        <p class="no-conversation-message">You have no open conversations</p>
+      </div>
       <div class="box" v-for="conversation in conversations" @click="viewConversation({ conversation, store })">
         <article class="media">
           <div class="media-left">
@@ -46,7 +50,8 @@ export default {
     name: 'conversations',
     computed: {
         ...mapGetters({
-            conversations: 'conversations'
+            conversations: 'conversations',
+            config: 'config'
         }),
         store() {
             return this
