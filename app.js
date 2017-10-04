@@ -35,7 +35,10 @@ mongoose()
 // Database Seeder
 databaseSeeder()
 // Set of routes in an application
-routes(app)
+// routes(app)
+app.get('/', (req, res) => {
+    res.json(true)
+})
 // Passport configuration
 passport()
 
