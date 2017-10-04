@@ -6,7 +6,7 @@ import socketIo from 'socket.io'
 import sockets from './lib/sockets'
 
 const server = http.createServer(app)
-const port = env.NODE_PORT || 3000
+const port = env.NODE_PORT || 5000
 const defaultPort = 8000
 const defaultIpAddress = '127.0.0.1'
 
@@ -20,8 +20,8 @@ const io = socketIo(server)
 sockets(io)
 
 if (env.APP_ENV === 'production') {
-    server.listen(port, () => {
-        logger(`Server listening on ${env.APP_URL}, Ctrl+C to stop`, LOGGER_TYPE.INFO)
+    app.listen(port, () => {
+        logger(`Server listening on ${env.APP_URL} at port ${port}, Ctrl+C to stop`, LOGGER_TYPE.INFO)
     })
 } else {
     server.listen(defaultPort, defaultIpAddress, () => {
