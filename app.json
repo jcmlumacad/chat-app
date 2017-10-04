@@ -1,0 +1,39 @@
+{
+  "name": "chat-app",
+  "description": "",
+  "scripts": {
+  },
+  "env": {
+    "APP_ENV": {
+      "required": true
+    },
+    "APP_URL": {
+      "required": true
+    },
+    "HOSTNAME": {
+      "required": true
+    },
+    "MONGO_DATABASE": {
+      "required": true
+    },
+    "MONGODB_URI": {
+      "required": true
+    },
+    "PORT": {
+      "required": true
+    },
+    "SESSION_SECRET": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "addons": [
+    "mongolab"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
