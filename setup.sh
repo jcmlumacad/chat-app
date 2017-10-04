@@ -9,11 +9,11 @@ bowerDir="bower_components"
 # fi
 
 # Install yarn
-echo "Installing yarn"
-npm install -g yarn
+# echo "Installing yarn"
+# npm install -g yarn
 
-echo "Installing libraries using yarn"
-yarn install
+# echo "Installing libraries using yarn"
+# yarn install
 
 # If bower command is not exist, then install using npm
 if ! bowerCommand="$(type -p "bower")" || [ -z "$bowerCommand" ]; then
