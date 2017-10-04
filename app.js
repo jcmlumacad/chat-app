@@ -31,9 +31,9 @@ csrf(app)
 // Centralized error handler
 handler(app)
 // Database configuration
-// mongoose()
+mongoose()
 // Database Seeder
-// databaseSeeder()
+databaseSeeder()
 // Set of routes in an application
 routes(app)
 // Passport configuration
