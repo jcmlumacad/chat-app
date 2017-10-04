@@ -6,7 +6,7 @@ import socketIo from 'socket.io'
 import sockets from './lib/sockets'
 
 const server = http.createServer(app)
-const port = process.env.NODE_PORT || 5000
+const port = process.env.PORT || 5000
 const defaultPort = 8000
 const defaultIpAddress = '127.0.0.1'
 
