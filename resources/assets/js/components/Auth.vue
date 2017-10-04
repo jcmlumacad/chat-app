@@ -1,7 +1,7 @@
 <template>
   <div class="auth-pane">
     <div class="login-container">
-      <p class="login-title">Be Chat</p>
+      <p class="login-title">Be Mini Chat</p>
 
       <form class="login-form form-horizontal">
         <div class="form-group">
