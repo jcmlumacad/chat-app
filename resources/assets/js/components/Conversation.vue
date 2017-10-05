@@ -3,7 +3,7 @@
     <conversation-header></conversation-header>
 
     <div class="container-section" v-if="config.isLoggedIn">
-      <div class="conversation-section">
+      <div class="conversation-section is-auth">
         <div class="is-fullhd">
           <conversations></conversations>
         </div>
